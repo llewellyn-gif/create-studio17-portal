@@ -166,22 +166,22 @@ function render(){
 }
 function bookingActions(b){
   let s='<div class="actions"><button class="btn small" onclick="editBooking('+b.id+')">Edit</button>';
-  if(b.status==='confirmed')s+='<button class="btn small" onclick="patchStatus('+b.id+',\\'completed\\')">Complete</button>';
+  if(b.status==='confirmed')s+='<button class="btn small" onclick="patchStatus('+b.id+',\'completed\')">Complete</button>';
   if(b.status!=='cancelled')s+='<button class="btn small" onclick="cancelBooking('+b.id+')">Cancel</button>';
   s+='<button class="btn small danger" onclick="deleteBooking('+b.id+')">Delete</button></div>';
   return s;
 }
 function quoteActions(b){
   let s='<div class="actions">',q=b.quote_status||'draft';
-  if(q==='draft')s+='<button class="btn small primary" onclick="setQuote('+b.id+',\\'sent\\')">Mark quote sent</button>';
-  if(q==='sent')s+='<button class="btn small" onclick="setQuote('+b.id+',\\'accepted\\')">Client accepted</button>';
+  if(q==='draft')s+='<button class="btn small primary" onclick="setQuote('+b.id+',\'sent\')">Mark quote sent</button>';
+  if(q==='sent')s+='<button class="btn small" onclick="setQuote('+b.id+',\'accepted\')">Client accepted</button>';
   if(q==='awaiting_confirmation')s+='<button class="btn small primary" onclick="confirmBooking('+b.id+')">Confirm booking</button>';
   s+='<button class="btn small" onclick="editBooking('+b.id+')">Edit quote</button></div>';
   return s;
 }
 function invoiceActions(b){
   if(b.invoice_status==='ready')return '<button class="btn small primary" onclick="addSageInvoice('+b.id+')">Add Sage invoice</button>';
-  if(b.invoice_status==='invoiced')return '<button class="btn small" onclick="patchInvoice('+b.id+',\\'paid\\')">Mark paid</button>';
+  if(b.invoice_status==='invoiced')return '<button class="btn small" onclick="patchInvoice('+b.id+',\'paid\')">Mark paid</button>';
   return '—';
 }
 async function patchStatus(id,status){try{await api('PATCH',{id,status});await load()}catch(e){alert(e.message)}}
