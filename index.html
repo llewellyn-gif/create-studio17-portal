@@ -101,9 +101,9 @@ async function api(method='GET',body=null,query=''){
   return d;
 }
 async function unlock(){
-  PIN=pin.value.trim();gateError.textContent='';
-  try{await load();sessionStorage.setItem('st17pin',PIN);gate.classList.add('hidden')}
-  catch(e){gateError.textContent='Incorrect PIN.'}
+  PIN=document.getElementById('pin').value.trim();document.getElementById('gateError').textContent='';
+  try{await load();sessionStorage.setItem('st17pin',PIN);document.getElementById('gate').classList.add('hidden')}
+  catch(e){document.getElementById('gateError').textContent=e.message==='Invalid access PIN'?'Incorrect PIN.':'Unable to load portal. Please try again.'}
 }
 async function load(){
   const [b,p]=await Promise.all([api(),api('GET',null,'?resource=products')]);
@@ -117,13 +117,13 @@ function table(rows,cols){
 }
 function render(){
   const active=bookings.filter(b=>b.status!=='cancelled');
-  mBookings.textContent=active.length;
-  mConfirmed.textContent=active.filter(b=>b.status==='confirmed').length;
-  mAwaiting.textContent=bookings.filter(b=>b.quote_status==='awaiting_confirmation').length;
-  mValue.textContent=money(active.reduce((s,b)=>s+Number(b.quoted_amount||0),0));
-  mInvoice.textContent=bookings.filter(b=>['ready','invoiced'].includes(b.invoice_status)).length;
+  document.getElementById('mBookings').textContent=active.length;
+  document.getElementById('mConfirmed').textContent=active.filter(b=>b.status==='confirmed').length;
+  document.getElementById('mAwaiting').textContent=bookings.filter(b=>b.quote_status==='awaiting_confirmation').length;
+  document.getElementById('mValue').textContent=money(active.reduce((s,b)=>s+Number(b.quoted_amount||0),0));
+  document.getElementById('mInvoice').textContent=bookings.filter(b=>['ready','invoiced'].includes(b.invoice_status)).length;
 
-  calendarTable.innerHTML=table(active,[
+  document.getElementById('calendarTable').innerHTML=table(active,[
     ['Date',b=>b.booking_date],
     ['Time',b=>b.start_time.slice(0,5)+'–'+b.end_time.slice(0,5)],
     ['Client',b=>'<b>'+b.client_company+'</b><br><span class="muted">'+b.booking_type+'</span>'],
@@ -131,26 +131,26 @@ function render(){
     ['Quote',b=>pill(b.quote_status||'draft')]
   ]);
 
-  bookingsTable.innerHTML=table(bookings,[
+  document.getElementById('bookingsTable').innerHTML=table(bookings,[
     ['Ref',b=>b.booking_ref],['Client',b=>b.client_company],['Date',b=>b.booking_date],
     ['Type',b=>b.booking_type],['Booking',b=>pill(b.status)],['Quote',b=>pill(b.quote_status||'draft')],
     ['Actions',b=>bookingActions(b)]
   ]);
 
-  quotesTable.innerHTML=table(bookings,[
+  document.getElementById('quotesTable').innerHTML=table(bookings,[
     ['Quote',b=>b.quote_number||'—'],['Client',b=>b.client_company],['Date',b=>b.booking_date],
     ['Subtotal',b=>money(b.quoted_amount)],['VAT',b=>money(b.vat_amount)],['Total',b=>money(b.total_amount)],
     ['Status',b=>pill(b.quote_status||'draft')],['Action',b=>quoteActions(b)]
   ]);
 
-  w17Table.innerHTML=table(active,[
+  document.getElementById('w17Table').innerHTML=table(active,[
     ['Client',b=>b.client_company],
     ['Date & time',b=>b.booking_date+' '+b.start_time.slice(0,5)+'–'+b.end_time.slice(0,5)],
     ['Production',b=>b.booking_type],['Guests',b=>b.guest_count],
     ['Operations',b=>b.operations_notes||'—'],['Status',b=>pill(b.status)]
   ]);
 
-  invoiceTable.innerHTML=table(bookings.filter(b=>b.status==='completed'||['ready','invoiced','paid'].includes(b.invoice_status)),[
+  document.getElementById('invoiceTable').innerHTML=table(bookings.filter(b=>b.status==='completed'||['ready','invoiced','paid'].includes(b.invoice_status)),[
     ['Ref',b=>b.booking_ref],['Client',b=>b.client_company],
     ['Quote total',b=>money(b.total_amount||b.quoted_amount)],
     ['Sage invoice',b=>b.invoice_number||'—'],['Invoice date',b=>b.invoice_date||'—'],
@@ -158,7 +158,7 @@ function render(){
     ['Status',b=>pill(b.invoice_status)],['Action',b=>invoiceActions(b)]
   ]);
 
-  ratesTable.innerHTML=table(products,[
+  document.getElementById('ratesTable').innerHTML=table(products,[
     ['Category',p=>p.category],
     ['Product',p=>'<b>'+p.name+'</b><br><span class="muted">'+(p.description||'')+'</span>'],
     ['Standard rate excl. VAT',p=>money(p.unit_price)]
@@ -217,56 +217,56 @@ function showTab(id,btn){
   if(btn)btn.classList.add('active');
 }
 function renderProductSelect(){
-  productSelect.innerHTML='<option value="">Choose a rate</option>'+products.map(p=>'<option value="'+p.id+'">'+p.category+' — '+p.name+' ('+money(p.unit_price)+')</option>').join('');
-  productSelect.onchange=()=>{const p=products.find(x=>x.id==productSelect.value);if(p)itemRate.value=p.unit_price};
+  document.getElementById('productSelect').innerHTML='<option value="">Choose a rate</option>'+products.map(p=>'<option value="'+p.id+'">'+p.category+' — '+p.name+' ('+money(p.unit_price)+')</option>').join('');
+  document.getElementById('productSelect').onchange=()=>{const ps=document.getElementById('productSelect');const p=products.find(x=>x.id==ps.value);if(p)document.getElementById('itemRate').value=p.unit_price};
 }
 function addQuoteItem(){
-  const p=products.find(x=>x.id==productSelect.value);
+  const p=products.find(x=>x.id==document.getElementById('productSelect').value);
   if(!p)return alert('Choose a product first.');
-  const qty=Math.max(.01,Number(itemQty.value||1)),rate=Math.max(0,Number(itemRate.value||0));
+  const qty=Math.max(.01,Number(document.getElementById('itemQty').value||1)),rate=Math.max(0,Number(document.getElementById('itemRate').value||0));
   quoteItems.push({product_id:p.id,description:p.name,quantity:qty,unit_price:rate});
   renderQuoteItems();
 }
 function removeQuoteItem(i){quoteItems.splice(i,1);renderQuoteItems()}
 function quoteSubtotal(){return quoteItems.reduce((s,i)=>s+Number(i.quantity)*Number(i.unit_price),0)}
 function renderQuoteItems(){
-  quoteItemsTable.innerHTML=table(quoteItems.map((x,i)=>({...x,_i:i})),[
+  document.getElementById('quoteItemsTable').innerHTML=table(quoteItems.map((x,i)=>({...x,_i:i})),[
     ['Item',i=>i.description],['Qty',i=>i.quantity],['Rate',i=>money(i.unit_price)],
     ['Line total',i=>money(i.quantity*i.unit_price)],
     ['',i=>'<button class="btn small danger" type="button" onclick="removeQuoteItem('+i._i+')">Remove</button>']
   ]);
-  const sub=quoteSubtotal(),disc=Math.max(0,Number(discountAmount.value||0)),taxable=Math.max(0,sub-disc),vat=taxable*.15,total=taxable+vat;
-  qSubtotal.textContent=money(sub);qDiscount.textContent=money(disc);qVat.textContent=money(vat);qTotal.textContent=money(total);
+  const sub=quoteSubtotal(),disc=Math.max(0,Number(document.getElementById('discountAmount').value||0)),taxable=Math.max(0,sub-disc),vat=taxable*.15,total=taxable+vat;
+  document.getElementById('qSubtotal').textContent=money(sub);document.getElementById('qDiscount').textContent=money(disc);document.getElementById('qVat').textContent=money(vat);document.getElementById('qTotal').textContent=money(total);
 }
 async function editBooking(id){
   const b=bookings.find(x=>x.id===id);if(!b)return;
   resetForm(false);showTab('new',null);
-  formTitle.textContent='Edit '+b.booking_ref+' / '+(b.quote_number||'quote');
-  editId.value=b.id;
+  document.getElementById('formTitle').textContent='Edit '+b.booking_ref+' / '+(b.quote_number||'quote');
+  document.getElementById('editId').value=b.id;
   ['client_company','contact_name','contact_email','booking_source','booking_type','booking_date','start_time','end_time','guest_count','po_number','client_notes','operations_notes','discount_amount'].forEach(k=>{
-    const el=bookingForm.elements[k];if(el)el.value=b[k]??'';
+    const el=document.getElementById('bookingForm').elements[k];if(el)el.value=b[k]??'';
   });
-  quoteStatusDisplay.value=(b.quote_status||'draft').replaceAll('_',' ');
-  saveBtn.textContent='Save changes';cancelEditBtn.classList.remove('hidden');
-  try{const d=await api('GET',null,'?resource=line_items&booking_id='+id);quoteItems=d.line_items||[];renderQuoteItems()}catch(e){formError.textContent=e.message}
+  document.getElementById('quoteStatusDisplay').value=(b.quote_status||'draft').replaceAll('_',' ');
+  document.getElementById('saveBtn').textContent='Save changes';document.getElementById('cancelEditBtn').classList.remove('hidden');
+  try{const d=await api('GET',null,'?resource=line_items&booking_id='+id);quoteItems=d.line_items||[];renderQuoteItems()}catch(e){document.getElementById('formError').textContent=e.message}
 }
 function newBooking(){resetForm();showTab('new',null)}
 function resetForm(clear=true){
-  if(clear)bookingForm.reset();
-  editId.value='';quoteItems=[];
-  formTitle.textContent='New booking & quote';saveBtn.textContent='Create pending booking';
-  cancelEditBtn.classList.add('hidden');quoteStatusDisplay.value='Draft';formError.textContent='';
+  if(clear)document.getElementById('bookingForm').reset();
+  document.getElementById('editId').value='';quoteItems=[];
+  document.getElementById('formTitle').textContent='New booking & quote';document.getElementById('saveBtn').textContent='Create pending booking';
+  document.getElementById('cancelEditBtn').classList.add('hidden');document.getElementById('quoteStatusDisplay').value='Draft';document.getElementById('formError').textContent='';
   renderQuoteItems();
 }
-bookingForm.addEventListener('submit',async e=>{
-  e.preventDefault();formError.textContent='';
+document.getElementById('bookingForm').addEventListener('submit',async e=>{
+  e.preventDefault();document.getElementById('formError').textContent='';
   const body=Object.fromEntries(new FormData(e.target).entries());
   body.quoted_amount=quoteSubtotal();
-  body.discount_amount=Number(discountAmount.value||0);
+  body.discount_amount=Number(document.getElementById('discountAmount').value||0);
   try{
     let id;
-    if(editId.value){
-      id=Number(editId.value);body.id=id;await api('PATCH',body);
+    if(document.getElementById('editId').value){
+      id=Number(document.getElementById('editId').value);body.id=id;await api('PATCH',body);
       const old=await api('GET',null,'?resource=line_items&booking_id='+id);
       for(const li of old.line_items||[])await api('DELETE',{resource:'line_item',id:li.id});
     }else{
@@ -274,10 +274,10 @@ bookingForm.addEventListener('submit',async e=>{
     }
     for(const li of quoteItems)await api('POST',{resource:'line_item',booking_id:id,product_id:li.product_id,description:li.description,quantity:li.quantity,unit_price:li.unit_price});
     resetForm();await load();showTab('quotes',document.querySelector('[data-tab=quotes]'));
-  }catch(err){formError.textContent=err.message}
+  }catch(err){document.getElementById('formError').textContent=err.message}
 });
 renderQuoteItems();
-if(PIN){load().then(()=>gate.classList.add('hidden')).catch(()=>sessionStorage.removeItem('st17pin'))}
+if(PIN){load().then(()=>document.getElementById('gate').classList.add('hidden')).catch(()=>sessionStorage.removeItem('st17pin'))}
 </script>
 </body>
 </html>
