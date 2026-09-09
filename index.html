@@ -11,6 +11,7 @@ main{padding:24px 18px 48px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bot
 .cards{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}.card,.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 7px 22px rgba(20,32,25,.04)}.label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}.metric{font-size:27px;font-weight:780;margin-top:7px}.panel{margin-bottom:18px}.panel h2{margin:0 0 8px}.panel h3{margin:18px 0 10px}.muted{color:var(--muted)}.notice{padding:12px 14px;border-radius:12px;background:var(--warnbg);color:var(--warn);font-size:13px;margin:10px 0}
 table{width:100%;border-collapse:collapse}th,td{padding:11px 9px;border-bottom:1px solid #e7eae7;text-align:left;font-size:13px;vertical-align:top}th{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}.pill{display:inline-block;background:var(--soft);padding:5px 9px;border-radius:999px;font-size:11px;text-transform:capitalize}.pill.warn{background:var(--warnbg);color:var(--warn)}.hidden{display:none!important}.actions{display:flex;gap:7px;flex-wrap:wrap}
 form{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;font-size:12px;color:var(--muted);font-weight:700}input,select,textarea{width:100%;margin-top:6px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:white}textarea{min-height:88px}.full{grid-column:1/-1}.grid3{display:grid;grid-template-columns:2fr .7fr 1fr auto;gap:8px;align-items:end}.quote-total{margin-left:auto;width:min(430px,100%);font-size:14px}.quote-total div{display:flex;justify-content:space-between;padding:5px 0}.quote-total .grand{font-size:18px;font-weight:800;border-top:1px solid var(--line);margin-top:5px;padding-top:10px}.gate{position:fixed;inset:0;background:rgba(16,38,27,.97);display:flex;align-items:center;justify-content:center;padding:20px;z-index:20}.gatebox{background:#fff;border-radius:22px;width:min(430px,100%);padding:28px}.error{color:#9c2e2e;margin-top:10px;font-size:13px}
+.reception-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin:16px 0}.reception-tools label{min-width:260px;flex:1}.reception-group{margin:22px 0}.reception-group h3{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 10px}.reception-list{display:grid;gap:10px}.reception-item{border:1px solid var(--line);border-radius:15px;padding:15px;background:#fff;display:grid;grid-template-columns:120px 1fr auto;gap:16px;align-items:start}.reception-time{font-size:19px;font-weight:800}.reception-client{font-size:17px;font-weight:800}.reception-meta{margin-top:5px;color:var(--muted);font-size:13px;line-height:1.55}.reception-note{margin-top:8px;padding:8px 10px;background:var(--soft);border-radius:9px;font-size:13px}.status-confirmed{background:#e6f2e9;color:#245d32}.status-provisional{background:var(--warnbg);color:var(--warn)}@media(max-width:700px){.reception-item{grid-template-columns:1fr}.reception-time{font-size:16px}}
 @media(max-width:900px){.cards{grid-template-columns:1fr 1fr}.panel{overflow:auto}.push{margin-left:0}.grid3{grid-template-columns:1fr 1fr}.grid3 .wide{grid-column:1/-1}form{grid-template-columns:1fr}.full{grid-column:auto}}
 </style>
 </head>
@@ -22,7 +23,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;fon
 <button class="tab active" data-tab="dashboard" onclick="showTab('dashboard',this)">Dashboard</button>
 <button class="tab" data-tab="bookings" onclick="showTab('bookings',this)">Bookings</button>
 <button class="tab" data-tab="quotes" onclick="showTab('quotes',this)">Quotes</button>
-<button class="tab" data-tab="w17" onclick="showTab('w17',this)">W17 View</button>
+<button class="tab" data-tab="w17" onclick="showTab('w17',this)">W17 Reception</button>
 <button class="tab" data-tab="invoice" onclick="showTab('invoice',this)">Invoicing</button>
 <button class="tab" data-tab="rates" onclick="showTab('rates',this)">Products & Pricing</button>
 <button class="btn primary push" onclick="newBooking()">+ New booking</button>
@@ -43,7 +44,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;fon
 
 <section id="quotes" class="hidden"><div class="panel"><h2>Quotes</h2><div class="notice">Client acceptance does not confirm the studio booking. Accepted quotes remain awaiting Urban Motion confirmation before the slot is confirmed.</div><div id="quotesTable"></div></div></section>
 
-<section id="w17" class="hidden"><div class="panel"><h2>Workshop17 operations view</h2><p class="muted">Financial information, quote values and Sage references are intentionally hidden here.</p><div id="w17Table"></div></div></section>
+<section id="w17" class="hidden"><div class="panel"><h2>Workshop17 Reception</h2><p class="muted">A simple arrivals and studio diary for reception. Financial information, quotes, invoices and Urban Motion internal notes are not shown here.</p><div class="reception-tools"><label>Search bookings<input id="w17Search" placeholder="Search client, contact, booking ref or production type" oninput="renderW17Reception()"></label><label style="max-width:220px">Show<select id="w17Filter" onchange="renderW17Reception()"><option value="active">Confirmed & provisional</option><option value="all">All non-cancelled</option></select></label></div><div id="w17Table"></div></div></section>
 
 <section id="invoice" class="hidden"><div class="panel"><h2>Sage invoicing tracker</h2><p class="muted">Sage remains the accounting system. Store the Sage invoice reference here for operational record keeping.</p><div id="invoiceTable"></div></div></section>
 
@@ -143,12 +144,7 @@ function render(){
     ['Status',b=>pill(b.quote_status||'draft')],['Action',b=>quoteActions(b)]
   ]);
 
-  document.getElementById('w17Table').innerHTML=table(active,[
-    ['Client',b=>b.client_company],
-    ['Date & time',b=>b.booking_date+' '+b.start_time.slice(0,5)+'–'+b.end_time.slice(0,5)],
-    ['Production',b=>b.booking_type],['Guests',b=>b.guest_count],
-    ['Operations',b=>b.operations_notes||'—'],['Status',b=>pill(b.status)]
-  ]);
+  renderW17Reception();
 
   document.getElementById('invoiceTable').innerHTML=table(bookings.filter(b=>b.status==='completed'||['ready','invoiced','paid'].includes(b.invoice_status)),[
     ['Ref',b=>b.booking_ref],['Client',b=>b.client_company],
@@ -163,6 +159,32 @@ function render(){
     ['Product',p=>'<b>'+p.name+'</b><br><span class="muted">'+(p.description||'')+'</span>'],
     ['Standard rate excl. VAT',p=>money(p.unit_price)]
   ]);
+}
+function esc(v){return String(v??'').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]||c))}
+function dateLabel(iso){
+  if(!iso)return '';
+  const d=new Date(iso+'T12:00:00');
+  return d.toLocaleDateString('en-ZA',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+}
+function renderW17Reception(){
+  const box=document.getElementById('w17Table');if(!box)return;
+  const q=(document.getElementById('w17Search')?.value||'').trim().toLowerCase();
+  const mode=document.getElementById('w17Filter')?.value||'active';
+  const today=new Date();today.setHours(0,0,0,0);
+  const tomorrow=new Date(today);tomorrow.setDate(tomorrow.getDate()+1);
+  const iso=d=>d.toISOString().slice(0,10), todayIso=iso(today), tomorrowIso=iso(tomorrow);
+  let rows=bookings.filter(b=>b.status!=='cancelled');
+  if(mode==='active')rows=rows.filter(b=>['confirmed','provisional'].includes(b.status));
+  if(q)rows=rows.filter(b=>[b.client_company,b.contact_name,b.booking_ref,b.booking_type,b.operations_notes].some(v=>String(v||'').toLowerCase().includes(q)));
+  rows.sort((a,b)=>(a.booking_date+a.start_time).localeCompare(b.booking_date+b.start_time));
+  const groups=[['Today',rows.filter(b=>b.booking_date===todayIso)],['Tomorrow',rows.filter(b=>b.booking_date===tomorrowIso)],['Upcoming',rows.filter(b=>b.booking_date>tomorrowIso)]];
+  const card=b=>{
+    const setup=Number(b.setup_minutes||0);let arrival='';
+    if(setup&&b.start_time){const [h,m]=b.start_time.split(':').map(Number);const mins=h*60+m-setup;arrival=String(Math.floor((mins+1440)%1440/60)).padStart(2,'0')+':'+String((mins+1440)%60).padStart(2,'0')}
+    const statusClass=b.status==='confirmed'?'status-confirmed':'status-provisional';
+    return '<div class="reception-item"><div><div class="reception-time">'+esc(b.start_time?.slice(0,5))+'–'+esc(b.end_time?.slice(0,5))+'</div><div class="muted">'+esc(b.booking_ref)+'</div></div><div><div class="reception-client">'+esc(b.client_company)+'</div><div class="reception-meta"><b>'+esc(b.booking_type)+'</b> · '+esc(b.guest_count||0)+' guest'+(Number(b.guest_count)===1?'':'s')+(b.contact_name?' · Contact: '+esc(b.contact_name):'')+(arrival?' · Arrival/setup: '+esc(arrival):'')+'</div>'+(b.operations_notes?'<div class="reception-note"><b>Reception / operations:</b> '+esc(b.operations_notes)+'</div>':'')+'</div><div><span class="pill '+statusClass+'">'+esc(b.status)+'</span></div></div>';
+  };
+  box.innerHTML=groups.map(([name,list])=>'<div class="reception-group"><h3>'+name+(list.length?' · '+list.length:'')+'</h3>'+(list.length?'<div class="reception-list">'+list.map(card).join('')+'</div>':'<p class="muted">No '+name.toLowerCase()+' bookings.</p>')+'</div>').join('');
 }
 function bookingActions(b){
   let s='<div class="actions"><button class="btn small" onclick="editBooking('+b.id+')">Edit</button>';
