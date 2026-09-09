@@ -1,305 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Create @ Studio17 Portal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Workshop17 Reception | Create @ Studio17</title>
 <style>
 :root{--bg:#f5f6f4;--card:#fff;--ink:#172019;--muted:#6d786f;--line:#dfe5df;--accent:#173d2d;--dark:#10261b;--soft:#eaf0ec;--warn:#8a5b00;--warnbg:#fff5d9;--danger:#9c2e2e}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
-header{background:var(--dark);color:#fff;padding:22px 26px;position:sticky;top:0;z-index:5}.wrap{max-width:1280px;margin:auto}.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.7}.title{font-size:25px;font-weight:780;margin-top:4px}
-main{padding:24px 18px 48px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.tab,.btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:10px 15px;font-weight:700;cursor:pointer}.tab.active,.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn.danger{color:var(--danger);border-color:#e5c9c9}.push{margin-left:auto}.small{padding:7px 10px;font-size:12px}
-.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}.card,.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 7px 22px rgba(20,32,25,.04)}.label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}.metric{font-size:27px;font-weight:780;margin-top:7px}.panel{margin-bottom:18px}.panel h2{margin:0 0 8px}.panel h3{margin:18px 0 10px}.muted{color:var(--muted)}.notice{padding:12px 14px;border-radius:12px;background:var(--warnbg);color:var(--warn);font-size:13px;margin:10px 0}
-table{width:100%;border-collapse:collapse}th,td{padding:11px 9px;border-bottom:1px solid #e7eae7;text-align:left;font-size:13px;vertical-align:top}th{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}.pill{display:inline-block;background:var(--soft);padding:5px 9px;border-radius:999px;font-size:11px;text-transform:capitalize}.pill.warn{background:var(--warnbg);color:var(--warn)}.hidden{display:none!important}.actions{display:flex;gap:7px;flex-wrap:wrap}
-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;font-size:12px;color:var(--muted);font-weight:700}input,select,textarea{width:100%;margin-top:6px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:white}textarea{min-height:88px}.full{grid-column:1/-1}.grid3{display:grid;grid-template-columns:2fr .7fr 1fr auto;gap:8px;align-items:end}.quote-total{margin-left:auto;width:min(430px,100%);font-size:14px}.quote-total div{display:flex;justify-content:space-between;padding:5px 0}.quote-total .grand{font-size:18px;font-weight:800;border-top:1px solid var(--line);margin-top:5px;padding-top:10px}.gate{position:fixed;inset:0;background:rgba(16,38,27,.97);display:flex;align-items:center;justify-content:center;padding:20px;z-index:20}.gatebox{background:#fff;border-radius:22px;width:min(430px,100%);padding:28px}.error{color:#9c2e2e;margin-top:10px;font-size:13px}
-.reception-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin:16px 0}.reception-tools label{min-width:260px;flex:1}.reception-group{margin:22px 0}.reception-group h3{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 10px}.reception-list{display:grid;gap:10px}.reception-item{border:1px solid var(--line);border-radius:15px;padding:15px;background:#fff;display:grid;grid-template-columns:120px 1fr auto;gap:16px;align-items:start}.reception-time{font-size:19px;font-weight:800}.reception-client{font-size:17px;font-weight:800}.reception-meta{margin-top:5px;color:var(--muted);font-size:13px;line-height:1.55}.reception-note{margin-top:8px;padding:8px 10px;background:var(--soft);border-radius:9px;font-size:13px}.status-confirmed{background:#e6f2e9;color:#245d32}.status-provisional{background:var(--warnbg);color:var(--warn)}@media(max-width:700px){.reception-item{grid-template-columns:1fr}.reception-time{font-size:16px}}
-@media(max-width:900px){.cards{grid-template-columns:1fr 1fr}.panel{overflow:auto}.push{margin-left:0}.grid3{grid-template-columns:1fr 1fr}.grid3 .wide{grid-column:1/-1}form{grid-template-columns:1fr}.full{grid-column:auto}}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--dark);color:#fff;padding:22px 26px;position:sticky;top:0;z-index:5}
+.wrap{max-width:1180px;margin:auto}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.7}
+.title{font-size:25px;font-weight:780;margin-top:4px}
+main{padding:24px 18px 48px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 7px 22px rgba(20,32,25,.04)}
+.panel h1,.panel h2{margin:0 0 8px}
+.muted{color:var(--muted)}
+.hidden{display:none!important}
+.gate{position:fixed;inset:0;background:rgba(16,38,27,.97);display:flex;align-items:center;justify-content:center;padding:20px;z-index:20}
+.gatebox{background:#fff;border-radius:22px;width:min(430px,100%);padding:28px}
+input,select{width:100%;margin-top:6px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:white}
+button{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:10px 15px;font-weight:700;cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.error{color:var(--danger);margin-top:10px;font-size:13px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin:16px 0}
+.toolbar label{min-width:260px;flex:1;font-size:12px;color:var(--muted);font-weight:700}
+.toolbar .small{max-width:220px}
+.group{margin:22px 0}
+.group h3{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 10px}
+.list{display:grid;gap:10px}
+.item{border:1px solid var(--line);border-radius:15px;padding:15px;background:#fff;display:grid;grid-template-columns:120px 1fr auto;gap:16px;align-items:start}
+.time{font-size:19px;font-weight:800}
+.client{font-size:17px;font-weight:800}
+.meta{margin-top:5px;color:var(--muted);font-size:13px;line-height:1.55}
+.note{margin-top:8px;padding:8px 10px;background:var(--soft);border-radius:9px;font-size:13px}
+.pill{display:inline-block;padding:5px 9px;border-radius:999px;font-size:11px;text-transform:capitalize}
+.confirmed{background:#e6f2e9;color:#245d32}
+.provisional{background:var(--warnbg);color:var(--warn)}
+.toprow{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.logout{font-size:12px;padding:8px 12px}
+@media(max-width:700px){.item{grid-template-columns:1fr}.time{font-size:16px}}
 </style>
 </head>
 <body>
-<div id="gate" class="gate"><div class="gatebox"><div class="eyebrow" style="color:#617066">CREATE @ STUDIO17</div><h1>Studio portal</h1><p class="muted">Enter the temporary admin PIN.</p><input id="pin" type="password" placeholder="Access PIN"><button class="btn primary" style="width:100%;margin-top:12px" onclick="unlock()">Open portal</button><div id="gateError" class="error"></div></div></div>
-<header><div class="wrap"><div class="eyebrow">CREATE @ STUDIO17</div><div class="title">Studio Booking & Operations</div></div></header>
-<main><div class="wrap">
-<div class="tabs">
-<button class="tab active" data-tab="dashboard" onclick="showTab('dashboard',this)">Dashboard</button>
-<button class="tab" data-tab="bookings" onclick="showTab('bookings',this)">Bookings</button>
-<button class="tab" data-tab="quotes" onclick="showTab('quotes',this)">Quotes</button>
-<button class="tab" data-tab="w17" onclick="showTab('w17',this)">W17 Reception</button>
-<button class="tab" data-tab="invoice" onclick="showTab('invoice',this)">Invoicing</button>
-<button class="tab" data-tab="rates" onclick="showTab('rates',this)">Products & Pricing</button>
-<button class="btn primary push" onclick="newBooking()">+ New booking</button>
+<div id="gate" class="gate">
+  <div class="gatebox">
+    <div class="eyebrow" style="color:#617066">CREATE @ STUDIO17</div>
+    <h1>Workshop17 Reception</h1>
+    <p class="muted">Enter the Workshop17 reception PIN.</p>
+    <input id="pin" type="password" placeholder="Reception PIN" autocomplete="current-password">
+    <button class="primary" style="width:100%;margin-top:12px" onclick="unlock()">Open reception diary</button>
+    <div id="gateError" class="error"></div>
+  </div>
 </div>
 
-<section id="dashboard">
-<div class="cards">
-<div class="card"><div class="label">Active bookings</div><div class="metric" id="mBookings">—</div></div>
-<div class="card"><div class="label">Confirmed</div><div class="metric" id="mConfirmed">—</div></div>
-<div class="card"><div class="label">Awaiting confirmation</div><div class="metric" id="mAwaiting">—</div></div>
-<div class="card"><div class="label">Quoted value excl. VAT</div><div class="metric" id="mValue">—</div></div>
-<div class="card"><div class="label">Ready / invoiced</div><div class="metric" id="mInvoice">—</div></div>
-</div>
-<div class="panel"><h2>Upcoming studio activity</h2><div id="calendarTable"></div></div>
-</section>
+<header>
+  <div class="wrap">
+    <div class="eyebrow">CREATE @ STUDIO17</div>
+    <div class="title">Workshop17 Reception</div>
+  </div>
+</header>
 
-<section id="bookings" class="hidden"><div class="panel"><h2>All bookings</h2><p class="muted">Manage the operational lifecycle from enquiry to completed studio job.</p><div id="bookingsTable"></div></div></section>
+<main>
+  <div class="wrap">
+    <div class="panel">
+      <div class="toprow">
+        <div>
+          <h2>Studio arrivals & bookings</h2>
+          <p class="muted">Reception view only. Commercial, invoicing and Urban Motion internal information is not available here.</p>
+        </div>
+        <button class="logout" onclick="logout()">Log out</button>
+      </div>
 
-<section id="quotes" class="hidden"><div class="panel"><h2>Quotes</h2><div class="notice">Client acceptance does not confirm the studio booking. Accepted quotes remain awaiting Urban Motion confirmation before the slot is confirmed.</div><div id="quotesTable"></div></div></section>
-
-<section id="w17" class="hidden"><div class="panel"><h2>Workshop17 Reception</h2><p class="muted">A simple arrivals and studio diary for reception. Financial information, quotes, invoices and Urban Motion internal notes are not shown here.</p><div class="reception-tools"><label>Search bookings<input id="w17Search" placeholder="Search client, contact, booking ref or production type" oninput="renderW17Reception()"></label><label style="max-width:220px">Show<select id="w17Filter" onchange="renderW17Reception()"><option value="active">Confirmed & provisional</option><option value="all">All non-cancelled</option></select></label></div><div id="w17Table"></div></div></section>
-
-<section id="invoice" class="hidden"><div class="panel"><h2>Sage invoicing tracker</h2><p class="muted">Sage remains the accounting system. Store the Sage invoice reference here for operational record keeping.</p><div id="invoiceTable"></div></div></section>
-
-<section id="rates" class="hidden"><div class="panel"><h2>Products & Pricing</h2><p class="muted">These are the standard starting rates. Any line item can be manually overridden on an individual quote.</p><div id="ratesTable"></div><div class="notice">Studio hire includes the standard Studio17 equipment published on the Create @ Studio17 website. Specialist technician bookings can include the two Sony camera setups where applicable.</div></div></section>
-
-<section id="new" class="hidden">
-<div class="panel"><h2 id="formTitle">New booking & quote</h2>
-<form id="bookingForm"><input type="hidden" id="editId">
-<div><label>Client / company<input name="client_company" required></label></div>
-<div><label>Contact person<input name="contact_name" required></label></div>
-<div><label>Email<input name="contact_email" type="email"></label></div>
-<div><label>Booking source<select name="booking_source"><option value="">Select</option><option>Website</option><option>Workshop17</option><option>Urban Motion</option><option>Repeat Client</option><option>Referral</option><option>Other</option></select></label></div>
-<div><label>Booking type<select name="booking_type"><option>Podcast</option><option>Vodcast</option><option>Green Screen</option><option>Webinar</option><option>Photography</option><option>Hybrid Production</option></select></label></div>
-<div><label>Guests<input name="guest_count" type="number" value="2" min="1"></label></div>
-<div><label>Date<input name="booking_date" type="date" required></label></div>
-<div><label>PO number<input name="po_number" placeholder="Optional client PO"></label></div>
-<div><label>Start time<input name="start_time" type="time" required></label></div>
-<div><label>End time<input name="end_time" type="time" required></label></div>
-<div class="full"><label>Client / quote notes<textarea name="client_notes" placeholder="Visible commercial or production notes for the quote"></textarea></label></div>
-<div class="full"><label>W17 / operations notes<textarea name="operations_notes" placeholder="Setup, access, crew, special requirements"></textarea></label></div>
-
-<div class="full"><h3>Quote builder</h3>
-<div class="grid3">
-<div class="wide"><label>Product<select id="productSelect"></select></label></div>
-<div><label>Qty<input id="itemQty" type="number" value="1" min="0.01" step="0.01"></label></div>
-<div><label>Rate excl. VAT<input id="itemRate" type="number" value="0" min="0" step="0.01"></label></div>
-<button class="btn" type="button" onclick="addQuoteItem()">Add</button>
-</div>
-<div id="quoteItemsTable" style="margin-top:12px"></div>
-</div>
-
-<div><label>Discount (R excl. VAT)<input name="discount_amount" id="discountAmount" type="number" value="0" min="0" step="0.01" oninput="renderQuoteItems()"></label></div>
-<div><label>Quote status<input id="quoteStatusDisplay" value="Draft" disabled></label></div>
-
-<div class="full"><div class="quote-total">
-<div><span>Subtotal excl. VAT</span><b id="qSubtotal">R0</b></div>
-<div><span>Discount</span><b id="qDiscount">R0</b></div>
-<div><span>VAT @ 15%</span><b id="qVat">R0</b></div>
-<div class="grand"><span>Total incl. VAT</span><span id="qTotal">R0</span></div>
-</div></div>
-
-<div class="full"><button class="btn primary" id="saveBtn" type="submit">Create pending booking</button> <button class="btn hidden" id="cancelEditBtn" type="button" onclick="resetForm();showTab('bookings',document.querySelector('[data-tab=bookings]'))">Cancel</button></div>
-</form><div id="formError" class="error"></div>
-</div></section>
-</div></main>
+      <div class="toolbar">
+        <label>Search bookings
+          <input id="search" placeholder="Search client, contact, booking ref or production type" oninput="render()">
+        </label>
+        <label class="small">Show
+          <select id="filter" onchange="render()">
+            <option value="active">Confirmed & provisional</option>
+            <option value="all">All non-cancelled</option>
+          </select>
+        </label>
+      </div>
+      <div id="content"><p class="muted">Loading bookings…</p></div>
+    </div>
+  </div>
+</main>
 
 <script>
-const API='https://khilxndzfgwjxcyhlhbw.supabase.co/functions/v1/studio17-api';
-let PIN=sessionStorage.getItem('st17pin')||'',bookings=[],products=[],quoteItems=[];
+const API='https://khilxndzfgwjxcyhlhbw.supabase.co/functions/v1/studio17-reception-api';
+let PIN=sessionStorage.getItem('st17w17pin')||'';
+let bookings=[];
 
-async function api(method='GET',body=null,query=''){
-  const r=await fetch(API+query,{method,headers:{'Content-Type':'application/json','x-studio-pin':PIN},body:body?JSON.stringify(body):undefined});
+function esc(v){
+  return String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+}
+function localISO(d){
+  const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+async function api(){
+  const r=await fetch(API,{headers:{'x-studio-pin':PIN}});
   const d=await r.json().catch(()=>({}));
-  if(!r.ok)throw new Error(d.error||'Request failed');
+  if(!r.ok) throw new Error(d.error||'Unable to load reception diary');
   return d;
 }
 async function unlock(){
-  PIN=document.getElementById('pin').value.trim();document.getElementById('gateError').textContent='';
-  try{await load();sessionStorage.setItem('st17pin',PIN);document.getElementById('gate').classList.add('hidden')}
-  catch(e){document.getElementById('gateError').textContent=e.message==='Invalid access PIN'?'Incorrect PIN.':'Unable to load portal. Please try again.'}
+  PIN=document.getElementById('pin').value.trim();
+  document.getElementById('gateError').textContent='';
+  try{
+    const d=await api();
+    bookings=d.bookings||[];
+    sessionStorage.setItem('st17w17pin',PIN);
+    document.getElementById('gate').classList.add('hidden');
+    render();
+  }catch(e){
+    document.getElementById('gateError').textContent=e.message==='Invalid reception PIN'?'Incorrect reception PIN.':'Unable to load reception diary. Please try again.';
+  }
 }
-async function load(){
-  const [b,p]=await Promise.all([api(),api('GET',null,'?resource=products')]);
-  bookings=b.bookings||[];products=p.products||[];renderProductSelect();render();
-}
-function money(v){return new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR',minimumFractionDigits:0,maximumFractionDigits:2}).format(Number(v||0))}
-function pill(v){const s=String(v||'draft').replaceAll('_',' ');return '<span class="pill '+(s.includes('awaiting')?'warn':'')+'">'+s+'</span>'}
-function table(rows,cols){
-  if(!rows.length)return '<p class="muted">Nothing to show yet.</p>';
-  return '<table><thead><tr>'+cols.map(c=>'<th>'+c[0]+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+cols.map(c=>'<td>'+c[1](r)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+function logout(){
+  sessionStorage.removeItem('st17w17pin');
+  PIN='';
+  location.reload();
 }
 function render(){
-  const active=bookings.filter(b=>b.status!=='cancelled');
-  document.getElementById('mBookings').textContent=active.length;
-  document.getElementById('mConfirmed').textContent=active.filter(b=>b.status==='confirmed').length;
-  document.getElementById('mAwaiting').textContent=bookings.filter(b=>b.quote_status==='awaiting_confirmation').length;
-  document.getElementById('mValue').textContent=money(active.reduce((s,b)=>s+Number(b.quoted_amount||0),0));
-  document.getElementById('mInvoice').textContent=bookings.filter(b=>['ready','invoiced'].includes(b.invoice_status)).length;
+  const box=document.getElementById('content');
+  const q=(document.getElementById('search')?.value||'').trim().toLowerCase();
+  const mode=document.getElementById('filter')?.value||'active';
 
-  document.getElementById('calendarTable').innerHTML=table(active,[
-    ['Date',b=>b.booking_date],
-    ['Time',b=>b.start_time.slice(0,5)+'–'+b.end_time.slice(0,5)],
-    ['Client',b=>'<b>'+b.client_company+'</b><br><span class="muted">'+b.booking_type+'</span>'],
-    ['Booking',b=>pill(b.status)],
-    ['Quote',b=>pill(b.quote_status||'draft')]
-  ]);
-
-  document.getElementById('bookingsTable').innerHTML=table(bookings,[
-    ['Ref',b=>b.booking_ref],['Client',b=>b.client_company],['Date',b=>b.booking_date],
-    ['Type',b=>b.booking_type],['Booking',b=>pill(b.status)],['Quote',b=>pill(b.quote_status||'draft')],
-    ['Actions',b=>bookingActions(b)]
-  ]);
-
-  document.getElementById('quotesTable').innerHTML=table(bookings,[
-    ['Quote',b=>b.quote_number||'—'],['Client',b=>b.client_company],['Date',b=>b.booking_date],
-    ['Subtotal',b=>money(b.quoted_amount)],['VAT',b=>money(b.vat_amount)],['Total',b=>money(b.total_amount)],
-    ['Status',b=>pill(b.quote_status||'draft')],['Action',b=>quoteActions(b)]
-  ]);
-
-  renderW17Reception();
-
-  document.getElementById('invoiceTable').innerHTML=table(bookings.filter(b=>b.status==='completed'||['ready','invoiced','paid'].includes(b.invoice_status)),[
-    ['Ref',b=>b.booking_ref],['Client',b=>b.client_company],
-    ['Quote total',b=>money(b.total_amount||b.quoted_amount)],
-    ['Sage invoice',b=>b.invoice_number||'—'],['Invoice date',b=>b.invoice_date||'—'],
-    ['Invoice amount',b=>b.invoice_amount!=null?money(b.invoice_amount):'—'],
-    ['Status',b=>pill(b.invoice_status)],['Action',b=>invoiceActions(b)]
-  ]);
-
-  document.getElementById('ratesTable').innerHTML=table(products,[
-    ['Category',p=>p.category],
-    ['Product',p=>'<b>'+p.name+'</b><br><span class="muted">'+(p.description||'')+'</span>'],
-    ['Standard rate excl. VAT',p=>money(p.unit_price)]
-  ]);
-}
-function esc(v){return String(v??'').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]||c))}
-function dateLabel(iso){
-  if(!iso)return '';
-  const d=new Date(iso+'T12:00:00');
-  return d.toLocaleDateString('en-ZA',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-}
-function renderW17Reception(){
-  const box=document.getElementById('w17Table');if(!box)return;
-  const q=(document.getElementById('w17Search')?.value||'').trim().toLowerCase();
-  const mode=document.getElementById('w17Filter')?.value||'active';
   const today=new Date();today.setHours(0,0,0,0);
   const tomorrow=new Date(today);tomorrow.setDate(tomorrow.getDate()+1);
-  const iso=d=>d.toISOString().slice(0,10), todayIso=iso(today), tomorrowIso=iso(tomorrow);
+  const todayIso=localISO(today),tomorrowIso=localISO(tomorrow);
+
   let rows=bookings.filter(b=>b.status!=='cancelled');
-  if(mode==='active')rows=rows.filter(b=>['confirmed','provisional'].includes(b.status));
-  if(q)rows=rows.filter(b=>[b.client_company,b.contact_name,b.booking_ref,b.booking_type,b.operations_notes].some(v=>String(v||'').toLowerCase().includes(q)));
+  if(mode==='active') rows=rows.filter(b=>['confirmed','provisional'].includes(b.status));
+  if(q) rows=rows.filter(b=>[b.client_company,b.contact_name,b.booking_ref,b.booking_type,b.operations_notes].some(v=>String(v||'').toLowerCase().includes(q)));
   rows.sort((a,b)=>(a.booking_date+a.start_time).localeCompare(b.booking_date+b.start_time));
-  const groups=[['Today',rows.filter(b=>b.booking_date===todayIso)],['Tomorrow',rows.filter(b=>b.booking_date===tomorrowIso)],['Upcoming',rows.filter(b=>b.booking_date>tomorrowIso)]];
+
+  const groups=[
+    ['Today',rows.filter(b=>b.booking_date===todayIso)],
+    ['Tomorrow',rows.filter(b=>b.booking_date===tomorrowIso)],
+    ['Upcoming',rows.filter(b=>b.booking_date>tomorrowIso)]
+  ];
+
   const card=b=>{
-    const setup=Number(b.setup_minutes||0);let arrival='';
-    if(setup&&b.start_time){const [h,m]=b.start_time.split(':').map(Number);const mins=h*60+m-setup;arrival=String(Math.floor((mins+1440)%1440/60)).padStart(2,'0')+':'+String((mins+1440)%60).padStart(2,'0')}
-    const statusClass=b.status==='confirmed'?'status-confirmed':'status-provisional';
-    return '<div class="reception-item"><div><div class="reception-time">'+esc(b.start_time?.slice(0,5))+'–'+esc(b.end_time?.slice(0,5))+'</div><div class="muted">'+esc(b.booking_ref)+'</div></div><div><div class="reception-client">'+esc(b.client_company)+'</div><div class="reception-meta"><b>'+esc(b.booking_type)+'</b> · '+esc(b.guest_count||0)+' guest'+(Number(b.guest_count)===1?'':'s')+(b.contact_name?' · Contact: '+esc(b.contact_name):'')+(arrival?' · Arrival/setup: '+esc(arrival):'')+'</div>'+(b.operations_notes?'<div class="reception-note"><b>Reception / operations:</b> '+esc(b.operations_notes)+'</div>':'')+'</div><div><span class="pill '+statusClass+'">'+esc(b.status)+'</span></div></div>';
-  };
-  box.innerHTML=groups.map(([name,list])=>'<div class="reception-group"><h3>'+name+(list.length?' · '+list.length:'')+'</h3>'+(list.length?'<div class="reception-list">'+list.map(card).join('')+'</div>':'<p class="muted">No '+name.toLowerCase()+' bookings.</p>')+'</div>').join('');
-}
-function bookingActions(b){
-  let s='<div class="actions"><button class="btn small" onclick="editBooking('+b.id+')">Edit</button>';
-  if(b.status==='confirmed')s+='<button class="btn small" onclick="patchStatus('+b.id+',\'completed\')">Complete</button>';
-  if(b.status!=='cancelled')s+='<button class="btn small" onclick="cancelBooking('+b.id+')">Cancel</button>';
-  s+='<button class="btn small danger" onclick="deleteBooking('+b.id+')">Delete</button></div>';
-  return s;
-}
-function quoteActions(b){
-  let s='<div class="actions">',q=b.quote_status||'draft';
-  if(q==='draft')s+='<button class="btn small primary" onclick="setQuote('+b.id+',\'sent\')">Mark quote sent</button>';
-  if(q==='sent')s+='<button class="btn small" onclick="setQuote('+b.id+',\'accepted\')">Client accepted</button>';
-  if(q==='awaiting_confirmation')s+='<button class="btn small primary" onclick="confirmBooking('+b.id+')">Confirm booking</button>';
-  s+='<button class="btn small" onclick="editBooking('+b.id+')">Edit quote</button></div>';
-  return s;
-}
-function invoiceActions(b){
-  if(b.invoice_status==='ready')return '<button class="btn small primary" onclick="addSageInvoice('+b.id+')">Add Sage invoice</button>';
-  if(b.invoice_status==='invoiced')return '<button class="btn small" onclick="patchInvoice('+b.id+',\'paid\')">Mark paid</button>';
-  return '—';
-}
-async function patchStatus(id,status){try{await api('PATCH',{id,status});await load()}catch(e){alert(e.message)}}
-async function setQuote(id,quote_status){try{await api('PATCH',{id,quote_status});await load()}catch(e){alert(e.message)}}
-async function confirmBooking(id){
-  if(!confirm('Confirm this studio booking? This is the final Urban Motion approval step.'))return;
-  try{await api('PATCH',{id,confirm_booking:true});await load()}catch(e){alert(e.message)}
-}
-async function cancelBooking(id){
-  if(!confirm('Cancel this booking? It will remain in booking history.'))return;
-  await patchStatus(id,'cancelled');
-}
-async function deleteBooking(id){
-  const b=bookings.find(x=>x.id===id);
-  if(!confirm('Permanently delete '+(b?.booking_ref||'this booking')+'? This cannot be undone.'))return;
-  try{await api('DELETE',{id});await load()}catch(e){alert(e.message)}
-}
-async function addSageInvoice(id){
-  const b=bookings.find(x=>x.id===id);
-  const n=prompt('Sage invoice number',b?.invoice_number||'');
-  if(n===null||!n.trim())return;
-  const date=prompt('Invoice date (YYYY-MM-DD)',new Date().toISOString().slice(0,10));
-  if(date===null)return;
-  const amount=prompt('Invoice amount incl. VAT',String(b?.total_amount||b?.quoted_amount||0));
-  if(amount===null)return;
-  try{await api('PATCH',{id,invoice_number:n.trim(),invoice_date:date,invoice_amount:Number(amount),invoice_status:'invoiced'});await load()}catch(e){alert(e.message)}
-}
-async function patchInvoice(id,status){try{await api('PATCH',{id,invoice_status:status});await load()}catch(e){alert(e.message)}}
-function showTab(id,btn){
-  document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  if(btn)btn.classList.add('active');
-}
-function renderProductSelect(){
-  document.getElementById('productSelect').innerHTML='<option value="">Choose a rate</option>'+products.map(p=>'<option value="'+p.id+'">'+p.category+' — '+p.name+' ('+money(p.unit_price)+')</option>').join('');
-  document.getElementById('productSelect').onchange=()=>{const ps=document.getElementById('productSelect');const p=products.find(x=>x.id==ps.value);if(p)document.getElementById('itemRate').value=p.unit_price};
-}
-function addQuoteItem(){
-  const p=products.find(x=>x.id==document.getElementById('productSelect').value);
-  if(!p)return alert('Choose a product first.');
-  const qty=Math.max(.01,Number(document.getElementById('itemQty').value||1)),rate=Math.max(0,Number(document.getElementById('itemRate').value||0));
-  quoteItems.push({product_id:p.id,description:p.name,quantity:qty,unit_price:rate});
-  renderQuoteItems();
-}
-function removeQuoteItem(i){quoteItems.splice(i,1);renderQuoteItems()}
-function quoteSubtotal(){return quoteItems.reduce((s,i)=>s+Number(i.quantity)*Number(i.unit_price),0)}
-function renderQuoteItems(){
-  document.getElementById('quoteItemsTable').innerHTML=table(quoteItems.map((x,i)=>({...x,_i:i})),[
-    ['Item',i=>i.description],['Qty',i=>i.quantity],['Rate',i=>money(i.unit_price)],
-    ['Line total',i=>money(i.quantity*i.unit_price)],
-    ['',i=>'<button class="btn small danger" type="button" onclick="removeQuoteItem('+i._i+')">Remove</button>']
-  ]);
-  const sub=quoteSubtotal(),disc=Math.max(0,Number(document.getElementById('discountAmount').value||0)),taxable=Math.max(0,sub-disc),vat=taxable*.15,total=taxable+vat;
-  document.getElementById('qSubtotal').textContent=money(sub);document.getElementById('qDiscount').textContent=money(disc);document.getElementById('qVat').textContent=money(vat);document.getElementById('qTotal').textContent=money(total);
-}
-async function editBooking(id){
-  const b=bookings.find(x=>x.id===id);if(!b)return;
-  resetForm(false);showTab('new',null);
-  document.getElementById('formTitle').textContent='Edit '+b.booking_ref+' / '+(b.quote_number||'quote');
-  document.getElementById('editId').value=b.id;
-  ['client_company','contact_name','contact_email','booking_source','booking_type','booking_date','start_time','end_time','guest_count','po_number','client_notes','operations_notes','discount_amount'].forEach(k=>{
-    const el=document.getElementById('bookingForm').elements[k];if(el)el.value=b[k]??'';
-  });
-  document.getElementById('quoteStatusDisplay').value=(b.quote_status||'draft').replaceAll('_',' ');
-  document.getElementById('saveBtn').textContent='Save changes';document.getElementById('cancelEditBtn').classList.remove('hidden');
-  try{const d=await api('GET',null,'?resource=line_items&booking_id='+id);quoteItems=d.line_items||[];renderQuoteItems()}catch(e){document.getElementById('formError').textContent=e.message}
-}
-function newBooking(){resetForm();showTab('new',null)}
-function resetForm(clear=true){
-  if(clear)document.getElementById('bookingForm').reset();
-  document.getElementById('editId').value='';quoteItems=[];
-  document.getElementById('formTitle').textContent='New booking & quote';document.getElementById('saveBtn').textContent='Create pending booking';
-  document.getElementById('cancelEditBtn').classList.add('hidden');document.getElementById('quoteStatusDisplay').value='Draft';document.getElementById('formError').textContent='';
-  renderQuoteItems();
-}
-document.getElementById('bookingForm').addEventListener('submit',async e=>{
-  e.preventDefault();document.getElementById('formError').textContent='';
-  const body=Object.fromEntries(new FormData(e.target).entries());
-  body.quoted_amount=quoteSubtotal();
-  body.discount_amount=Number(document.getElementById('discountAmount').value||0);
-  try{
-    let id;
-    if(document.getElementById('editId').value){
-      id=Number(document.getElementById('editId').value);body.id=id;await api('PATCH',body);
-      const old=await api('GET',null,'?resource=line_items&booking_id='+id);
-      for(const li of old.line_items||[])await api('DELETE',{resource:'line_item',id:li.id});
-    }else{
-      const d=await api('POST',body);id=d.booking.id;
+    const setup=Number(b.setup_minutes||0);
+    let arrival='';
+    if(setup&&b.start_time){
+      const [h,m]=b.start_time.split(':').map(Number);
+      const mins=h*60+m-setup;
+      arrival=String(Math.floor((mins+1440)%1440/60)).padStart(2,'0')+':'+String((mins+1440)%60).padStart(2,'0');
     }
-    for(const li of quoteItems)await api('POST',{resource:'line_item',booking_id:id,product_id:li.product_id,description:li.description,quantity:li.quantity,unit_price:li.unit_price});
-    resetForm();await load();showTab('quotes',document.querySelector('[data-tab=quotes]'));
-  }catch(err){document.getElementById('formError').textContent=err.message}
-});
-renderQuoteItems();
-if(PIN){load().then(()=>document.getElementById('gate').classList.add('hidden')).catch(()=>sessionStorage.removeItem('st17pin'))}
+    const cls=b.status==='confirmed'?'confirmed':'provisional';
+    return `<div class="item">
+      <div>
+        <div class="time">${esc(b.start_time?.slice(0,5))}–${esc(b.end_time?.slice(0,5))}</div>
+        <div class="muted">${esc(b.booking_ref)}</div>
+      </div>
+      <div>
+        <div class="client">${esc(b.client_company)}</div>
+        <div class="meta"><b>${esc(b.booking_type)}</b> · ${esc(b.guest_count||0)} guest${Number(b.guest_count)===1?'':'s'}${b.contact_name?' · Contact: '+esc(b.contact_name):''}${arrival?' · Arrival/setup: '+esc(arrival):''}</div>
+        ${b.operations_notes?`<div class="note"><b>Reception / operations:</b> ${esc(b.operations_notes)}</div>`:''}
+      </div>
+      <div><span class="pill ${cls}">${esc(b.status)}</span></div>
+    </div>`;
+  };
+
+  box.innerHTML=groups.map(([name,list])=>`<div class="group">
+    <h3>${name}${list.length?' · '+list.length:''}</h3>
+    ${list.length?`<div class="list">${list.map(card).join('')}</div>`:`<p class="muted">No ${name.toLowerCase()} bookings.</p>`}
+  </div>`).join('');
+}
+
+if(PIN){
+  api().then(d=>{
+    bookings=d.bookings||[];
+    document.getElementById('gate').classList.add('hidden');
+    render();
+  }).catch(()=>{
+    sessionStorage.removeItem('st17w17pin');
+    PIN='';
+  });
+}
 </script>
 </body>
 </html>
